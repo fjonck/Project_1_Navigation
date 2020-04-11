@@ -28,6 +28,3 @@ The environment is considered to be solved after having achieved an average scor
 2. Open the notebook Navigation.ipynb with Jupyter Notebook
 3. In the menu, click on Cell -> Run All
 4. Enjoy watching the Banana Collector Agent learn :)
-
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
