@@ -12,7 +12,7 @@ Output: value function $Q$ ($\approx q_\pi$ if *num_episodes* is large enough)
 
 Initialize action-value function $Q(s,a)$ with random weights $\Theta$ for all $s \in S$ and $a \in A(s)$.
 Initialize target action-value function $\tilde{Q}(s,a)$ with weights $\tilde{\Theta} = \Theta$ from $Q(s,a)$ for all $s \in S$ and $a \in A(s)$.
-Initialize replay memory $D$ to capacity $N$  
+	Initialize replay memory $D$ to capacity $N$  
 
 **for** $i \leftarrow 1$ to *num_episodes* **do** 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$\epsilon \leftarrow \epsilon_i$
@@ -45,10 +45,10 @@ We use *Fixed Q-Targets* to prevent correlations which come the fact that we try
 	TAU = 1e-3              					# for soft update of target parameters
 	LR = 5e-4               					# learning rate
 	C = 4                   					# how often to update the network
-	num_episodes = 2000							# the number of episodes
-	eps_start = 1								# the initial value of epsilon for the epsilon-greedy policy
-	eps_decay = 0.995							# the rate of change of epsilon for each episode
-	eps_min = 0.01								# the minimum value of epsilon
+	num_episodes = 2000						# the number of episodes
+	eps_start = 1							# the initial value of epsilon for the epsilon-greedy policy
+	eps_decay = 0.995						# the rate of change of epsilon for each episode
+	eps_min = 0.01							# the minimum value of epsilon
 	
 
 ### The model architecture of the deep neural network
