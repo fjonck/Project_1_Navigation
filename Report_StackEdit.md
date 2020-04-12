@@ -1,8 +1,3 @@
----
-
-
----
-
 <h1 id="the-learning-algorithm">The learning algorithm</h1>
 <p>The learning algorithm I implemented is based on the <a href="https://github.com/udacity/deep-reinforcement-learning/tree/master/dqn">Udacity exercise</a> to implement Deep Q-Learning to solve the <a href="https://gym.openai.com/envs/LunarLander-v2/">OpenAI Gym’s LunarLander environment</a>. The implementation is a vanilla Deep Q-Network based on the paper <a href="http://dx.doi.org/10.1038/nature14236">“Human-level control through deep reinforcement learning”</a><sup class="footnote-ref"><a href="#fn1" id="fnref1">1</a></sup></p>
 <h3 id="the-implementation-details">The implementation details</h3>
