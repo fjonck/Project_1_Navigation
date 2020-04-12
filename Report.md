@@ -9,7 +9,22 @@
 </head>
 
 <body class="stackedit">
-  <div class="stackedit__html"><h1 id="the-learning-algorithm">The learning algorithm</h1>
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#the-learning-algorithm">The learning algorithm</a>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="the-learning-algorithm">The learning algorithm</h1>
 <p>The learning algorithm I implemented is based on the <a href="https://github.com/udacity/deep-reinforcement-learning/tree/master/dqn">Udacity exercise</a> to implement Deep Q-Learning to solve the <a href="https://gym.openai.com/envs/LunarLander-v2/">OpenAI Gym’s LunarLander environment</a>. The implementation is a vanilla Deep Q-Network based on the paper <a href="http://dx.doi.org/10.1038/nature14236">“Human-level control through deep reinforcement learning”</a><sup class="footnote-ref"><a href="#fn1" id="fnref1">1</a></sup></p>
 <h3 id="the-implementation-details">The implementation details</h3>
 <p>The implementation at hand is a <em>Q-Learning algorithm</em> with a <em>Deep Neural Network</em> to approximate the optimal action-value function <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>Q</mi><mo>∗</mo></msup><mo stretchy="false">(</mo><mi>s</mi><mo separator="true">,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Q^*(s,a)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord"><span class="mord mathdefault">Q</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.688696em;"><span class="" style="top: -3.063em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">s</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.16666666666666666em;"></span><span class="mord mathdefault">a</span><span class="mclose">)</span></span></span></span></span>. We are using the L2-Norm for computing the loss and the Adam optimizer<sup class="footnote-ref"><a href="#fn2" id="fnref2">2</a></sup>. Additionally we use the two features <em>Experience Replay</em> and <em>Fixed Q-Targets</em>. The following pseudo-code of the algorithm is a variation of the combination of the paper <a href="http://dx.doi.org/10.1038/nature14236">“Human-level control through deep reinforcement learning”</a><sup class="footnote-ref"><a href="#fn1" id="fnref1:1">1</a></sup> and the <a href="https://github.com/udacity/deep-reinforcement-learning/blob/master/cheatsheet/cheatsheet.pdf">Udacity cheatsheet</a>:</p>
@@ -105,7 +120,9 @@ eps_min = 0.01                              # the minimum value of epsilon
 </li>
 </ol>
 </section>
-</div>
+
+    </div>
+  </div>
 </body>
 
 </html>
