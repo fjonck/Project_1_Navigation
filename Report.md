@@ -88,7 +88,7 @@ class QNetwork(nn.Module):
 
 The algorithm at hand achieves an average reward of 13 over 100 consecutive episodes in 553 episodes. 
 
-
+![score](https://github.com/fjonck/Project_1_Navigation/blob/master/score.png)
 
 ### Ideas for future work
 
