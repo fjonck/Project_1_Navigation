@@ -15,24 +15,27 @@ Initialize target action-value function $\tilde{Q}(s,a)$ with weights $\tilde{\T
 Initialize replay memory $D$ to capacity $N$  
 
 **for** $i \leftarrow 1$ to *num_episodes* **do** 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$\epsilon \leftarrow \epsilon_i$
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Observe $S_0$
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$t←0$
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**repeat**
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Choose action $A_t$ using an $\epsilon$-greedy policy derived from $Q$ 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Take action $A_t$ and observe $R_{t+1} , S_{t+1}$
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Store experience $(S_t, A_t, R_t, R_{t+1})$ in $D$
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Every** C steps **do**
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sample a random minibatch of experience tuples $(S_t, A_t, R_t, R_{t+1})$ from $D$
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set $Q(S_t, A_t) \leftarrow Q(S_t, A_t) + \alpha(R_{t+1} + \gamma \max_a \tilde{Q}(S_{t+1}, a) − Q(S_t, A_t))$ 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Perform back propagation according to the L2-Norm 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and the Adam-optimizer to update the weights of the action-value function $Q$
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Update $\tilde{\Theta} \leftarrow \tau*\Theta + (1 - \tau)*\tilde{\Theta}$
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**end**
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$t \leftarrow t+1$
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**until** $S_t$ is terminal; 
-**end**
-**return** $Q$
+>$\epsilon \leftarrow \epsilon_i$  
+Observe $S_0$  
+$t←0$  
+**repeat**  
+>>Choose action $A_t$ using an $\epsilon$-greedy policy derived from $Q$  
+Take action $A_t$ and observe $R_{t+1} , S_{t+1}$  
+Store experience $(S_t, A_t, R_t, R_{t+1})$ in $D$  
+**Every** C steps **do**  
+>>>Sample a random minibatch of experience tuples $(S_t, A_t, R_t, R_{t+1})$ from $D$  
+Set $Q(S_t, A_t) \leftarrow Q(S_t, A_t) + \alpha(R_{t+1} + \gamma \max_a \tilde{Q}(S_{t+1}, a) − Q(S_t, A_t))$  
+Perform back propagation according to the L2-Norm  
+and the Adam-optimizer to update the weights of the action-value function $Q$  
+Update $\tilde{\Theta} \leftarrow \tau*\Theta + (1 - \tau)*\tilde{\Theta}$  
+
+>>**end**  
+$t \leftarrow t+1$  
+
+>**until** $S_t$ is terminal;  
+
+**end**  
+**return** $Q$  
 
 We use *Experience Replay* to prevent correlations of successive experiences. We can make use of rare occurrences of experiences and learn from them multiple times.  At every time step $t$ we store the experience tuple $(s_j, a_j, r_j, s_{j+1})$ in the replay buffer $D$ and sample from it a random minibatch to update the network. 
 We use *Fixed Q-Targets* to prevent correlations which come the fact that we try to update the approximated action-value function $Q$ with an approximated action-value function $Q$. To make use of the feature of fixed Q-targets, we introduce a target action-value function $\tilde{Q}$ and use it in the update rule $Q(S_t, A_t) = Q(S_t, A_t) + \alpha(R_{t+1} + \gamma \max_a \tilde{Q}(S_{t+1}, a) − Q(S_t, A_t))$. Every C steps, we update the parameters of the target action-value function $\tilde{Q}$ by setting $\tilde{\Theta} = \tau*\Theta + (1 - \tau)*\tilde{\Theta}$.
